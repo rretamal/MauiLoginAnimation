@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiLoginAnimation.LoginPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}">
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Source="icon.png" Aspect="AspectFit" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" />
+        <skia:SKLottieView
+                        Grid.Row="0"
+                        x:Name="faceView"
+                        Source="happyface.json"
+                        RepeatCount="-1"
+                        HeightRequest="150" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"                        
+                        IsAnimationEnabled="True">
+            <skia:SKLottieView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnLottieViewTapped"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwipe"/>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwipe"/>
+            </skia:SKLottieView.GestureRecognizers>
+        </skia:SKLottieView>
+        
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <Label Text="Login into our App!" FontSize="20"
+                   TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
+                   FontAttributes="Bold" Margin="0,0,0,20"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Email Address"
+                   TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
+
+            <Entry x:Name="txtEmail" Placeholder="email@domain.com" Keyboard="Email"
+                   TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
+                   PlaceholderColor="{AppThemeBinding Light={StaticResource SecondaryTextColorLight}, Dark={StaticResource SecondaryTextColorDark}}"/>
+
+            <Label Text="Password"
+                   TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
+
+            <Entry x:Name="txtPassword" Placeholder="password" IsPassword="True"
+                   TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
+                   PlaceholderColor="{AppThemeBinding Light={StaticResource SecondaryTextColorLight}, Dark={StaticResource SecondaryTextColorDark}}"/>
+
+            <Label Text="Forgot password?" HorizontalOptions="End"
+                   TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColorLight}, Dark={StaticResource SecondaryTextColorDark}}"
+                   FontSize="Small"/>
+
+            <Button x:Name="btnLogin" Text="Log In"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource AccentColorLight}, Dark={StaticResource AccentColorDark}}"
+                    TextColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}"
+                    Margin="0,10,0,0"/>
+
+            <Label HorizontalOptions="CenterAndExpand" Margin="0,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="New User? "
+                              TextColor="{AppThemeBinding Light={StaticResource SecondaryTextColorLight}, Dark={StaticResource SecondaryTextColorDark}}"/>
+                        <Span Text="Create Account"
+                              TextColor="{AppThemeBinding Light={StaticResource AccentColorLight}, Dark={StaticResource AccentColorDark}}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
